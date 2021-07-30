@@ -1,0 +1,14 @@
+<template>
+
+    <template if:true={accessToken}>
+        <lightning-card title="Factory Inventory">
+            <lightning-datatable 
+                data={soapList}
+                columns={soapTable} 
+                key-field="ExternalId__c" 
+                onrowselection={getSelectedRow}>
+            </lightning-datatable>
+        </lightning-card>
+    </template>
+
+</template>

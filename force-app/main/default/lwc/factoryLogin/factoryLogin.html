@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Login to factory System">
+        <template if:false={AccessToken}>
+            <lightning-input label='name'
+                                name='Name'
+                                onchange={handleInput}>
+            </lightning-input>
+            <lightning-input label='Pass Word'
+                                name='Pword'
+                                onchange={handleInput}>
+            </lightning-input>
+
+            <lightning-button
+                label='log in'
+                onclick={doLogin}>
+            </lightning-button>
+        </template>
+        <template if:true={AccessToken}>
+            <p>Logged in</p>
+        </template>
+    </lightning-card>
+    
+</template>

@@ -1,0 +1,45 @@
+<template>
+    <lightning-card >
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="4">
+                <c-factory-login
+                        onloginevent={handleLogin}>
+
+                </c-factory-login>
+            </lightning-layout-item>
+            <lightning-layout-item size="8">
+                <c-factory-inventory
+                    onsoaplistupdate={handleSoapListUpdate}
+                    onscheduledelivery={handleDeliveryData}
+                    access-token={accessToken}>
+
+                </c-factory-inventory>
+            </lightning-layout-item>
+
+
+
+        </lightning-layout>
+    </lightning-card>
+
+    <lightning-card>
+        <lightning-layout horizontal-align="space">
+
+            <lightning-layout-item size="6">
+                <c-production-order
+                        soap-list={soapList}>
+
+                </c-production-order>
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
+                <c-delivery-order
+                    access-token={accessToken}
+                    delivery-list={deliveryList}
+                    oncreateorder={createOrder}>
+
+                </c-delivery-order>
+            </lightning-layout-item>
+
+        </lightning-layout>
+    </lightning-card>
+    
+</template>

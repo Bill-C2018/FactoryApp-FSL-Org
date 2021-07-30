@@ -1,0 +1,19 @@
+<template>
+    <template if:true={accessToken}>
+            <lightning-card title="Delivery order">
+                <template if:true={deliveryList}>
+                    <template iterator:i = {deliveryList}>
+                        <c-order-item soapname={i.value.Name}
+                                        soapid={i.value.ExternalId__c}
+                                        key={i.value.ExternalId__c}
+                                        barsonhand={i.value.count__c}
+                                        oncreateorder={handleNewOrder}>
+                        </c-order-item>
+                    </template>
+                </template>
+            </lightning-card>
+    </template>
+    <template if:false={accessToken}>
+        <h2 class='slds-text-heading_medium'>Please log in to access order delivery system</h2>
+    </template>
+</template>

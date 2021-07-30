@@ -1,0 +1,18 @@
+<template>
+    <template if:true={accessToken}>
+        <lightning-card title="Click item to trigger a production order">
+            <lightning-card title="Factory Inventory">
+                <lightning-datatable 
+                    data={soapList}
+                    columns={soapTable} 
+                    key-field="ExternalId__c" 
+                    onrowselection={getSelectedRow}>
+                </lightning-datatable>
+            </lightning-card>
+        </lightning-card>
+    </template>
+    <template if:false={accessToken}>
+        <h2 class='slds-text-heading_medium'>Low Stock List (not yet implemented)</h2>
+    </template>
+    
+</template>
