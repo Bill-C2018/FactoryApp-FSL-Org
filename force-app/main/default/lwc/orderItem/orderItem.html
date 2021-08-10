@@ -1,18 +1,16 @@
 <template>
-        <table>
-            <th>Name</th>
-            <th>Id</th>
-            <th>Count</th>
-            <th>Order Quantity</th>
-                
-            <tr>
-                <td>{soapname}</td>
-                <td>{soapid}</td>
-                <td>{barsonhand}</td>
-                <td><lightning-input name="count" label="Number ordered" value="1"></lightning-input></td>
-            </tr>
-        </table>
-        
-        <lightning-button label="Order" onclick={buttonHandler}></lightning-button>
-
+    <lightning-layout horizontal-align="space">
+        <lightning-layout-item size="3">
+            {soapname}
+        </lightning-layout-item>
+        <lightning-layout-item size="5">
+            {soapid}
+        </lightning-layout-item>
+        <lightning-layout-item size="2">
+            {barsonhand}
+        </lightning-layout-item>
+        <lightning-layout-item size="2">
+            <lightning-input name={soapid} value="1" onchange={buttonHandler}></lightning-input>
+        </lightning-layout-item>
+    </lightning-layout>
 </template>

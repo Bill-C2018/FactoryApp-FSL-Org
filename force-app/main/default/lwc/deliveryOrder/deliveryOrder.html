@@ -2,17 +2,46 @@
 
     <template if:true={accessToken}>
             <lightning-card title="Delivery order">
+
+                <lightning-layout horizontal-align="space">
+                    <lightning-layout-item size="3">
+                        <B>Name</B>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="5">
+                        <B>Id</B>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <B>On Hand</B>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <B>Order Quantity</B>
+                    </lightning-layout-item>
+                </lightning-layout>
+                     
+                   
                 <template if:true={deliveryList}>
+
                     <template iterator:i = {deliveryList}>
                         <c-order-item soapname={i.value.Name}
                                         soapid={i.value.ExternalId__c}
                                         key={i.value.ExternalId__c}
                                         barsonhand={i.value.count__c}
-                                        oncreateorder={handleNewOrder}>
+                                        onupdateorder={updateOrder}>
                         </c-order-item>
                     </template>
+
                 </template>
+
             </lightning-card>
+            <template if:true={orderList}>
+                <template iterator:x = {orderList}>
+                    {x.value.name}
+                    {x.value.amount}
+                    <br key={x.value.id}>
+                </template>
+
+            </template>
+            <lightning-button label="Order" onclick={buttonHandler}></lightning-button>
     </template>
     <template if:false={accessToken}>
         <h2 class='slds-text-heading_medium'>Please log in to access order delivery system</h2>
