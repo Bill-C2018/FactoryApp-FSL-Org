@@ -3,14 +3,16 @@
             <th>Name</th>
             <th>Id</th>
             <th>Count</th>
+            <th>Order Quantity</th>
                 
             <tr>
                 <td>{soapname}</td>
                 <td>{soapid}</td>
                 <td>{barsonhand}</td>
+                <td><lightning-input name="count" label="Number ordered" value="1"></lightning-input></td>
             </tr>
         </table>
-        <lightning-input name="count" label="Number ordered" value="1"></lightning-input>
+        
         <lightning-button label="Order" onclick={buttonHandler}></lightning-button>
 
 </template>

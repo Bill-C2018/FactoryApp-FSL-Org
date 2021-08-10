@@ -1,4 +1,15 @@
 public with sharing class ApexCallout {
+
+    @AuraEnabled
+    public static List<Account>  getAccounts(){
+        try {
+
+            return [Select Name, ID from Account ORDER BY Name];
+            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
     
 	@AuraEnabled
 	public static List<BarOfSoap__c> getSoapsList(String url) {

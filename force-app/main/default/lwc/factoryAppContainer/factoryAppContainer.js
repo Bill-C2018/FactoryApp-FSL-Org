@@ -1,14 +1,25 @@
 import { track, LightningElement } from 'lwc';
 
 import updateRemoteInventory from '@salesforce/apex/ApexCallout.updateRemoteInventory'
+import getAccounts from '@salesforce/apex/ApexCallout.getAccounts'
 
 export default class FactoryAppContainer extends LightningElement {
 
     @track soapList
     @track deliveryList
     @track accessToken
+    @track accountList
 
-    remoteObj = {barId: "", soapName: "", count: "0"}
+    connectedCallback() {
+        getAccounts()
+        .then( data => {
+            accountList = [...data]
+        })
+        .catch( error => {
+            console.log(error.body.message)
+        })
+
+    }
 
     handleSoapListUpdate = (event) => {
 
@@ -38,21 +49,13 @@ export default class FactoryAppContainer extends LightningElement {
         console.log('top level')
         const orderObj = event.detail.order
 
-        this.remoteObj.barId = 
-        this.remoteObj.soapName =  orderObj.soapName
-        this.remoteObj.count = orderObj.amount
-
-        var item = {
+        var remoteItem = {
             "barId": orderObj.soapId,
             "soapName": orderObj.soapName,
             "count": parseInt(orderObj.amount) * -1,
         }
 
-        console.log(item)
-        console.log(this.accessToken)
-        console.log(JSON.stringify(item))
-
-        updateRemoteInventory({data: JSON.stringify(item), token: this.accessToken })
+        updateRemoteInventory({data: JSON.stringify(remoteItem), token: this.accessToken })
          .then( data => {
             console.log(data)
          })
