@@ -32,6 +32,23 @@ export default class FactoryInventory extends LightningElement {
         this.dispatchEvent(evt)        
     }
 
+    @api
+    forceRefresh = () => {
+        console.log("in force refresh")
+        getSoapsList()
+        .then( data => {
+            this.soapList = [...data]
+            console.log(this.soapList)
+            let test = new Array()
+            test = [...this.soapList]
+            const evt= new CustomEvent('soaplistupdate', {detail:{soapList:test}})
+            this.dispatchEvent(evt)
+            
+        }) 
+        .catch(error => {
+            this.showError(error.body.message + ' Is kubernetes running?')
+        })           
+    }
 
     connectedCallback() {
         getSoapsList()

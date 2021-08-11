@@ -44,24 +44,35 @@ export default class FactoryAppContainer extends LightningElement {
     need to update the remote db and create a 
     SF order record. Then clear the selection in the 
     inventory list and update that list
+    TODO: need to handle a failure 
     */
     createOrder = (event) => {
         console.log('top level')
         const orderObj = event.detail.order
 
-        var remoteItem = {
-            "barId": orderObj.soapId,
-            "soapName": orderObj.soapName,
-            "count": parseInt(orderObj.amount) * -1,
-        }
+        //would normally pass this off to a thread 
+        for(var x = 0; x < orderObj.length; x++) {
+            let r = orderObj[x]
+            var remoteItem = {
+                "barId": r.id,
+                "soapName": r.name,
+                "count": parseInt(r.amount) * -1,
+            } 
+            
+            //TODO: validate object before calling out with it
+            
 
-        updateRemoteInventory({data: JSON.stringify(remoteItem), token: this.accessToken })
-         .then( data => {
-            console.log(data)
-         })
-         .catch( error => {
-             console.log(error)
-         })
+            updateRemoteInventory({data: JSON.stringify(remoteItem), token: this.accessToken })
+            .then( data => {
+               console.log(data)
+            })
+            .catch( error => {
+                console.log(error)
+            })
+        }
+        //TODO: why does this blow up?
+        //FactoryInventory.forceRefresh();
+
 
     }
 
