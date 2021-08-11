@@ -71,9 +71,9 @@ export default class FactoryAppContainer extends LightningElement {
             })
         }
         //TODO: why does this blow up?
-        //FactoryInventory.forceRefresh();
+        this.template.querySelector('c-factory-inventory').forceRefresh();
 
-
+       
     }
 
 }

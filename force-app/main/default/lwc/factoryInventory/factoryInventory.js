@@ -33,8 +33,9 @@ export default class FactoryInventory extends LightningElement {
     }
 
     @api
-    forceRefresh = () => {
+    forceRefresh()  {
         console.log("in force refresh")
+
         getSoapsList()
         .then( data => {
             this.soapList = [...data]
@@ -47,7 +48,8 @@ export default class FactoryInventory extends LightningElement {
         }) 
         .catch(error => {
             this.showError(error.body.message + ' Is kubernetes running?')
-        })           
+        })   
+       
     }
 
     connectedCallback() {
