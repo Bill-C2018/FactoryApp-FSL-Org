@@ -33,14 +33,7 @@
                 </template>
 
             </lightning-card>
-            <template if:true={orderList}>
-                <template iterator:x = {orderList}>
-                    {x.value.name}
-                    {x.value.amount}
-                    <br key={x.value.id}>
-                </template>
 
-            </template>
             <lightning-button label="Order" onclick={buttonHandler}></lightning-button>
     </template>
     <template if:false={accessToken}>

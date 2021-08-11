@@ -5,7 +5,7 @@ export default class DeliveryOrder extends LightningElement {
     @api deliveryList
     @api accessToken
 
-    @track orderList = new Array()
+    @api orderList  = new Array()
   
 
     updateOrder = (event) => {
@@ -38,9 +38,8 @@ export default class DeliveryOrder extends LightningElement {
 
     }
     handleNewOrder = (event) => {
-        console.log('first level')
-        const orderObj = event.detail.order
-        console.log(orderObj.soapId)
+        console.log('Order Button Clicked')
+        const orderObj = orderList
         const evt = new CustomEvent('createorder', {detail: {order: orderObj}})
         this.dispatchEvent(evt)
     }
