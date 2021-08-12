@@ -58,7 +58,8 @@ export default class FactoryAppContainer extends LightningElement {
                 "soapName": r.name,
                 "count": parseInt(r.amount) * -1,
             } 
-            
+
+            console.log (remoteItem)
             //TODO: validate object before calling out with it
             
 

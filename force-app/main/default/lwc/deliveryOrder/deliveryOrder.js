@@ -42,6 +42,7 @@ export default class DeliveryOrder extends LightningElement {
         const orderObj = this.orderList
         const evt = new CustomEvent('createorder', {detail: {order: orderObj}})
         this.dispatchEvent(evt)
+        this.orderList = []
         
     }
 

@@ -19,7 +19,7 @@ export default class FactoryInventory extends LightningElement {
 
     @api accessToken
     
-
+    timeoutID
 
     // use the toast component to display errors
     showError = (msg) => {
@@ -32,10 +32,7 @@ export default class FactoryInventory extends LightningElement {
         this.dispatchEvent(evt)        
     }
 
-    @api
-    forceRefresh()  {
-        console.log("in force refresh")
-
+    getRemoteData = () => {
         getSoapsList()
         .then( data => {
             this.soapList = [...data]
@@ -48,41 +45,43 @@ export default class FactoryInventory extends LightningElement {
         }) 
         .catch(error => {
             this.showError(error.body.message + ' Is kubernetes running?')
-        })   
+        })
+    }
+
+    doDelayedRefresh = () => {
+        this.getRemoteData(); 
+        clearTimeout(this.timeoutID);
+    }
+
+    @api
+    forceRefresh()  {
+
+        
+        this.template.querySelector('lightning-datatable').selectedRows=[];
+        const evt= new CustomEvent('scheduledelivery', {detail:{items:[]}})
+        this.dispatchEvent(evt) 
+        this.timeoutID = setTimeout(this.doDelayedRefresh, 5000)
+ 
        
     }
 
     connectedCallback() {
-        getSoapsList()
-        .then( data => {
-            this.soapList = [...data]
-            console.log(this.soapList)
-            let test = new Array()
-            test = [...this.soapList]
-            const evt= new CustomEvent('soaplistupdate', {detail:{soapList:test}})
-            this.dispatchEvent(evt)
-            
-        }) 
-        .catch(error => {
-            this.showError(error.body.message + ' Is kubernetes running?')
-        })       
+        this.getRemoteData();
     }
 
+    handleClick() {
+        var cmp = this.template.querySelector('lightning-datatable')
+        console.log(cmp)
+        var selected = cmp.getSelectedRows();
+        console.log(selected)
+        
+    
 
+    }
     getSelectedRow = (event) => {
         const selectedRows = event.detail.selectedRows
         const evt= new CustomEvent('scheduledelivery', {detail:{items:selectedRows}})
         this.dispatchEvent(evt)
-
-
-/*
-        console.log("table clicked")
-        const selectedRows = event.detail.selectedRows;
-        // Display that fieldName of the selected rows
-        for (let i = 0; i < selectedRows.length; i++){
-            alert("You selected: " + selectedRows[i].Name);
-        }
-*/
 
     }
 }
