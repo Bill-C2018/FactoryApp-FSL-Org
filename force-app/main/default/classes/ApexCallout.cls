@@ -2,13 +2,12 @@ public with sharing class ApexCallout {
 
     @AuraEnabled
     public static List<Account>  getAccounts(){
-        try {
 
-            return [Select Name, ID from Account ORDER BY Name];
-            
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+        List<Account> res = new List<Account>();
+        for (List<Account> a: [Select Name, ID from Account ORDER BY Name]) {
+            res.addAll(a);
         }
+        return res;
     }
     
 	@AuraEnabled
