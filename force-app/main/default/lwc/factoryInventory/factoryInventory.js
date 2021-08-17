@@ -33,7 +33,7 @@ export default class FactoryInventory extends LightningElement {
     }
 
     getRemoteData = () => {
-        getSoapsList()
+        getSoapsList({url: 'http://clm.dyndns-server.com/soaps_sf'})
         .then( data => {
             this.soapList = [...data]
             console.log(this.soapList)

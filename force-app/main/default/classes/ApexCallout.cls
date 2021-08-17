@@ -18,7 +18,7 @@ public with sharing class ApexCallout {
  
 		// Instantiate a new HTTP request, specify the method (GET) as well as the endpoint
 		HttpRequest req = new HttpRequest();
-		req.setEndpoint('http://clm.dyndns-server.com/soaps_sf');
+		req.setEndpoint(url);
 		req.setMethod('GET');
         try {
 		// Send the request, and return a response
