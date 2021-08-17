@@ -28,9 +28,7 @@ public with sharing class ApexCallout {
 		// Deserialize the JSON string into collections of primitive data types.
         System.debug(res.getBody());
 
-        if(res == null || res.getStatusCode() != 200) {
-            throw new AuraHandledException('no response');
-        }
+        if(res == null || res.getStatusCode() != 200) { throw new AuraHandledException('no response'); }
         List<BarOfSoapMapper> responses = (List<BarOfSoapMapper>) JSON.deserialize(res.getBody(),List<BarOfSoapMapper>.class);
 
         
@@ -39,9 +37,7 @@ public with sharing class ApexCallout {
             records.add(response.getRecord());
         }
         return records;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
+        } catch (Exception e) { throw new AuraHandledException(e.getMessage()); }
 
 
 	}
@@ -78,9 +74,7 @@ public with sharing class ApexCallout {
             System.debug(res.getBody());
             return res.getBody();
                 
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
+        } catch (Exception e) { throw new AuraHandledException(e.getMessage()); }
     }
   
 }
