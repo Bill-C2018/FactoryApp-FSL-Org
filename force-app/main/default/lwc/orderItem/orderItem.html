@@ -1,15 +1,18 @@
 <template>
     <lightning-layout horizontal-align="space">
-        <lightning-layout-item size="3">
+        <lightning-layout-item >
             {soapname}
         </lightning-layout-item>
-        <lightning-layout-item size="5">
+        <lightning-layout-item >
             {soapid}
         </lightning-layout-item>
-        <lightning-layout-item size="2">
+        <lightning-layout-item >
+            {type}
+        </lightning-layout-item>
+        <lightning-layout-item >
             {barsonhand}
         </lightning-layout-item>
-        <lightning-layout-item size="2">
+        <lightning-layout-item >
             <lightning-input name={soapid} value="1" onchange={buttonHandler}></lightning-input>
         </lightning-layout-item>
     </lightning-layout>

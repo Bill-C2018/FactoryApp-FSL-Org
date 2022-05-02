@@ -1,0 +1,14 @@
+<template>
+    
+    <lightning-card title="Select soaps to order">
+        <lightning-datatable 
+            data={SoapList2}
+            columns={soapTable2} 
+            key-field="ID" 
+            onrowselection={getSelectedRow}>
+        </lightning-datatable>
+    </lightning-card>
+    <lightning-button label="Refresh" onclick={forceRefresh}></lightning-button>
+
+
+</template>

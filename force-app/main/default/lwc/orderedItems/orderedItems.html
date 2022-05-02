@@ -1,0 +1,33 @@
+<template>
+    
+    <lightning-card title="Cart Contents">
+
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="1">
+                <B>Name</B>
+            </lightning-layout-item>
+            <lightning-layout-item size="1">
+                <B>type</B>
+            </lightning-layout-item>
+            <lightning-layout-item size="1">
+                <B>On Hand</B>
+            </lightning-layout-item>
+            <lightning-layout-item size="1">
+                <B>Order Quantity</B>
+            </lightning-layout-item>
+        </lightning-layout>
+        <p>{value}</p>
+        <template iterator:i = {deliverylist}>
+            
+            <c-order-item soapname={i.value.Name}
+                        type={i.value.Bar_Type__c}
+                        key={i.value.Id}
+                        barsonhand={i.value.Number_Available__c}                            
+                            >
+            </c-order-item>
+        </template>
+    </lightning-card>
+    
+
+
+</template>

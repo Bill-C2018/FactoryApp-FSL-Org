@@ -1,0 +1,34 @@
+<template>
+
+    <lightning-card >
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="12">
+            <c-soap-list2
+                onupdatecurrentorder={handleDeliveryData}>
+            </c-soap-list2>
+                
+
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+
+    <lightning-card>
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="12">
+                <c-customer
+                    onupdateordername={doupdateOrderName}
+                >
+                </c-customer>
+                <c-ordered-items
+                    deliverylist={getdeliveryList}
+                    value="this is a test"
+                    >
+                </c-ordered-items>
+                <c-place-order-button
+                    onplacetheorder={doPlaceTheOrder}
+                >
+                </c-place-order-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
