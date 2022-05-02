@@ -1,4 +1,5 @@
 import {api, track, LightningElement } from 'lwc';
+import placeOrder from '@salesforce/apex/PlaceSoapOrder.placeOrder'
 
 export default class SoapEcommerceContainer extends LightningElement {
 
@@ -9,7 +10,7 @@ export default class SoapEcommerceContainer extends LightningElement {
     @track orderList
 
     getdeliveryList() {
-        return deliveryList
+        return this.deliveryList
     }
 
     handleDeliveryData = (event) => {
@@ -32,6 +33,10 @@ export default class SoapEcommerceContainer extends LightningElement {
         console.log(this.customerFullName)
         console.log("order items")
         console.log(this.deliveryList)
+        placeOrder({IName: this.customerFullName, items: this.deliveryList}).
+        then(results => {
+            console.log(results)
+        })
     }
 
 
