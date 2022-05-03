@@ -17,7 +17,7 @@
             </lightning-layout-item>
         </lightning-layout>
         <p>{value}</p>
-        <template iterator:i = {deliverylist}>
+        <template iterator:i = {currentorders}>
             
             <c-order-item soapname={i.value.Name}
                         type={i.value.Bar_Type__c}

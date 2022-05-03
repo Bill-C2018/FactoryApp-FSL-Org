@@ -1,4 +1,4 @@
-public with sharing class GetSoapList {
+public without sharing class GetSoapList {
 
     @AuraEnabled
     public static List<BarOfSoap2__c>  GetSoaps() {

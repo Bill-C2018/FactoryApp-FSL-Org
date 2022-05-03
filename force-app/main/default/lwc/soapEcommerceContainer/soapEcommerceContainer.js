@@ -5,7 +5,7 @@ export default class SoapEcommerceContainer extends LightningElement {
 
     deliveryList
     customerFullName = ""
-    value = "bobs your uncle"
+    
     
     @track orderList
 
@@ -19,7 +19,7 @@ export default class SoapEcommerceContainer extends LightningElement {
         console.log(event.detail.items)
         this.deliveryList = event.detail.items
         console.log(this.deliveryList)
-        this.value = "bob is your mom"
+        this.template.querySelector('c-ordered-items').updateCurrentOrders(this.deliveryList)
     }
 
     doupdateOrderName = (event) => {
