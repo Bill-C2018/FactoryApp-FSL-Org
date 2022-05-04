@@ -15,6 +15,7 @@ export default class SoapList2 extends LightningElement {
     @track SoapList2
 
     getListOfSoaps = () => {
+        this.SoapList2 = []
         console.log("+++++++++++++++++++ Calling getSoaps ++++++++++++++++++++")
         getSoaps()
         .then( data => {
@@ -50,6 +51,14 @@ export default class SoapList2 extends LightningElement {
         console.log(this.selectedRows)
         const evt= new CustomEvent('updatecurrentorder', {detail:{items:this.selectedRows}})
         this.dispatchEvent(evt)
+
+    }
+
+    @api
+    refreshList() {
+        console.log("in refresh list +++++++++++++++++")
+        this.getListOfSoaps()
+        this.template.querySelector('lightning-datatable').selectedRows=[];
 
     }
 }

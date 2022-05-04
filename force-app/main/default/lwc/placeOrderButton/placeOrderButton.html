@@ -1,5 +1,7 @@
 <template>
 
-    <lightning-button label="Place Order" onclick={doPlaceOrder}></lightning-button>
+    <template if:true={displayButton}>
+        <lightning-button label="Place Order" onclick={doPlaceOrder}></lightning-button>
+    </template>
     
 </template>

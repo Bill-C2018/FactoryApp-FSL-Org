@@ -1,4 +1,4 @@
-public with sharing class PlaceSoapOrder {
+public without sharing class PlaceSoapOrder {
 
     @AuraEnabled
     public static String placeOrder(String IName, List<Map<String,String>> items) {
@@ -25,6 +25,7 @@ public with sharing class PlaceSoapOrder {
         for(Integer x = 0; x < items.size(); x++) {
             SoapOrderItem__c theItem = new SoapOrderItem__c();
             theItem.Name = items[x].get('Scent__c');
+            theItem.Item__c = items[x].get('Id');
             theItem.Bar_Type__c = items[x].get('Bar_Type__c');
             theItem.Soap_Order__c = theOrder.Id;
             theItem.Quantity__c = Decimal.ValueOf(items[x].get('Number_Available__c'));
@@ -55,6 +56,7 @@ public with sharing class PlaceSoapOrder {
         } catch(exception e) {
             a = new Account();
             a.Name = inputName;
+            a.Soap_Account__c = true;
             insert a;
         } 
         

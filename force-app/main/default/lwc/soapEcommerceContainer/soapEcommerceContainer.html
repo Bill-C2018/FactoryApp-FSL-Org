@@ -1,11 +1,13 @@
 <template>
 
-    <lightning-card >
+    <lightning-card title="Create an order">
         <lightning-layout horizontal-align="space">
-            <lightning-layout-item size="12">
-            <c-soap-list2
-                onupdatecurrentorder={handleDeliveryData}>
-            </c-soap-list2>
+            
+            <lightning-layout-item padding="around-small" size="12">
+            <c-customer
+                onupdateordername={doupdateOrderName}
+            >
+            </c-customer>
                 
 
             </lightning-layout-item>
@@ -15,10 +17,10 @@
     <lightning-card>
         <lightning-layout horizontal-align="space">
             <lightning-layout-item size="12">
-                <c-customer
-                    onupdateordername={doupdateOrderName}
-                >
-                </c-customer>
+                <c-soap-list2
+                    onupdatecurrentorder={handleDeliveryData}>
+                </c-soap-list2>
+
                 <c-ordered-items
                                         
                     >
