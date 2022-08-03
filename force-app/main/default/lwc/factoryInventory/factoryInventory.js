@@ -1,5 +1,6 @@
 import { api, track, LightningElement } from 'lwc';
 
+
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getSoapsList from '@salesforce/apex/ApexCallout.getSoapsList'
 
@@ -67,6 +68,8 @@ export default class FactoryInventory extends LightningElement {
 
     connectedCallback() {
         this.getRemoteData();
+        this.doSubscribe();
+        
     }
 
     handleClick() {
@@ -84,4 +87,6 @@ export default class FactoryInventory extends LightningElement {
         this.dispatchEvent(evt)
 
     }
+
+
 }
