@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <assignments>
+        <name>Set_to_Decorative</name>
+        <label>Set to Decorative</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Price__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>2.5</numberValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_to_Full</name>
+        <label>Set to Full</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Price__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Set_Price</name>
+        <label>Set Price</label>
+        <locationX>182</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Set_to_Full</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Bar_Type_Decorative</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Bar_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Decorative</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_to_Decorative</targetReference>
+            </connector>
+            <label>Is Bar Type Decorative</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Set Bar Price {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Set Bar Price</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Price</targetReference>
+        </connector>
+        <object>BarOfSoap2__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
