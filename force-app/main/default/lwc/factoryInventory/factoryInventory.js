@@ -68,7 +68,7 @@ export default class FactoryInventory extends LightningElement {
 
     connectedCallback() {
         this.getRemoteData();
-        this.doSubscribe();
+  //      this.doSubscribe();
         
     }
 

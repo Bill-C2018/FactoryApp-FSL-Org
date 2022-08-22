@@ -46,7 +46,7 @@ export default class SoapList2 extends LightningElement {
 
     connectedCallback() {
         this.registerErrorListener();
-        this.handleSubscribe();
+  //      this.handleSubscribe();
         this.getListOfSoaps();
         
     }
